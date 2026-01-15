@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="Pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Caio Porto</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+   <canvas id="network-bg"></canvas>
+    <header>
+        <h1>Bem-vindo(as) ao meu portfólio</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Mim</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="sobre">
+        <div class="sobre-container">
+            <div class="sobre-texto">
+                <h2 class="scroll-reveal">Sobre Mim</h2>
+                <p class="scroll-reveal">Bem-vindo ao meu portfólio! Meu nome é Caio Porto e sou um estudante de Ciência da Computação atualmente cursando a faculdade no 4º período. Atualmente estou procurando desenvolver minhas habilidades em desenvolvimento web e outras áreas da computação.
+    Atualmente estou programando em C, Python e JavaScript com enfase em C. Tenho interesse sobre aperfeiçoar minhas habilidades em desenvolvimento web, MachineLearning e segurança da informação. Tenho 20 ano e estou animado para compartilhar meus projetos e experiências com vocês.</p>
+            </div>
+            <div class="sobre-imagem">
+                <img src="C:\Users\caiop\OneDrive\Documentos\Faculdade\html projetos\Portfolio\Ftos\digital illustration.png" alt="Ftos\digital illustration.png">
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2 class="scroll-reveal">Projetos</h2>
+        <div class="projeto scroll-reveal">
+            <h3 class="scroll-reveal">Crud em loja de vinil em C com interface gráfica.</h3>
+            <p class="scroll-reveal">Desenvolvido como parte da disciplina de Programação Estruturada, ministrada pelo professor Guibson Santana, o objetivo era construir um CRUD completo em linguagem C, simulando o funcionamento de um sistema básico de cadastro.</p>
+            <a href="https://github.com/PortoCya/CRUD-LOJA-DE-VINIL" target="_blank" class="github-link">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+            </a>
+        </div>
+        <div class="projeto scroll-reveal">
+            <h3 class="scroll-reveal">DB project</h3>
+            <p class="scroll-reveal">Este projeto tem como objetivo modelar um banco de dados para gerenciar informações relacionadas a linhas ferroviárias, estações, trens, maquinistas, viagens, e seus respectivos relacionamentos. A estrutura do banco de dados busca atender às necessidades de controle e operação de uma rede ferroviária, garantindo uma organização eficiente das informações.</p>
+            <a href="https://github.com/JoaoPRamos10/DBproject" target="_blank" class="github-link">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+            </a>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2 class="scroll-reveal">Contato</h2>
+        <form class="scroll-reveal" action="https://formsubmit.co/caioportocontato@gmail.com" method="POST">
+            <label  for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 portfólio Caio Porto. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
