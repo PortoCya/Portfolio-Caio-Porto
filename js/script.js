@@ -99,3 +99,31 @@ window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
 
+/* ing and portuguese toggle */
+
+
+const langBtn = document.getElementById("lang-toggle");
+const flagIcon = document.getElementById("flag-icon");
+const langText = document.getElementById("lang-text");
+
+let currentLang = "pt";
+
+function updateLanguage() {
+    const elements = document.querySelectorAll("[data-pt][data-en]");
+    elements.forEach(el => {
+        el.textContent = el.dataset[currentLang];
+    });
+
+    if (currentLang === "pt") {
+        flagIcon.src = "https://flagcdn.com/w20/us.png";
+        langText.textContent = "EN";
+    } else {
+        flagIcon.src = "https://flagcdn.com/w20/br.png";
+        langText.textContent = "PT";
+    }
+}
+
+langBtn.addEventListener("click", () => {
+    currentLang = currentLang === "pt" ? "en" : "pt";
+    updateLanguage();
+});

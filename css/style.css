@@ -379,3 +379,34 @@ footer {
 .light-mode nav a:hover {
   color: #111827;
 }
+
+/* Botão mudar inglês e português*/
+
+
+.lang-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #ffffff20;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    background: #ffffff40;
+}
+
+.lang-btn img {
+    width: 20px;
+    height: 14px;
+    border-radius: 2px;
+}
