@@ -13,8 +13,11 @@ Este projeto reúne minha identidade como desenvolvedor: criatividade, técnica 
 | **Estrutura** | HTML5 semântico |
 | **Estilo** | CSS3, animações, efeitos visuais avançados |
 | **Interatividade** | JavaScript modular, eventos, efeitos dinâmicos |
-| **Extras** | Scroll Reveal, Typing Effect, Theme Toggle (Dark/Light), UI refinada |
+| **Extras** | Scroll Reveal, Typing Effect, UI refinada |
 
+
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Feito com](https://img.shields.io/badge/feito%20com-HTML%2C%20CSS%2C%20JS-blue)
 ---
 
 ## 🚀 Funcionalidades do Portfólio
