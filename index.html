@@ -1,113 +1,722 @@
 <!DOCTYPE html>
-<html lang="Pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-pt="Portfolio Caio Porto" data-en="Caio Porto Portfolio">Portfolio Caio Porto</title>
+    <meta name="description" content="Portfólio de Caio Porto — Ciência da Computação, Redes, Cibersegurança e Desenvolvimento de Software.">
+    <title data-pt="Portfólio | Caio Porto — Dev, Redes & CyberSec" data-en="Portfolio | Caio Porto — Dev, Networks & CyberSec">Portfólio | Caio Porto — Dev, Redes & CyberSec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
 </head>
 <body>
-   <canvas id="network-bg"></canvas>
+    <!-- FUNDO INTERATIVO DE REDE DE PARTÍCULAS -->
+    <canvas id="network-bg" aria-hidden="true"></canvas>
 
-    <header>
-        <h1 data-pt="Bem-vindo(as) ao meu portfólio" data-en="Welcome to my portfolio">
-            Bem-vindo(as) ao meu portfólio
-        </h1>
+    <!-- BARRA DE NAVEGAÇÃO FUTURISTA -->
+    <header class="site-header" id="topo">
+        <div class="header-container">
+            <a href="#sobre" class="brand-logo" aria-label="Caio Porto Home">
+                <span class="brand-bracket">&lt;</span>Caio<span class="brand-accent">Porto</span><span class="brand-bracket">/&gt;</span>
+                <span class="brand-status-dot" title="Online"></span>
+            </a>
 
-        <nav>
-            <ul>
-                <li><a href="#sobre" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</a></li>
-                <li><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a></li>
-                <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
-            </ul>
-        </nav>
+            <nav class="main-nav" id="main-nav" aria-label="Navegação Principal">
+                <ul>
+                    <li><a href="#sobre" class="nav-link active" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</a></li>
+                    <li><a href="#cybersec" class="nav-link" data-pt="Redes & CyberSec" data-en="Networks & CyberSec">Redes & CyberSec</a></li>
+                    <li><a href="#skills" class="nav-link" data-pt="Habilidades" data-en="Skills">Habilidades</a></li>
+                    <li><a href="#projetos" class="nav-link" data-pt="Projetos" data-en="Projects">Projetos</a></li>
+                    <li><a href="#contato" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a></li>
+                </ul>
+            </nav>
 
-        <!-- BOTÃO COM BANDEIRAS -->
-        <button id="lang-toggle" class="lang-btn">
-            <img id="flag-icon" src="https://flagcdn.com/w20/us.png" alt="flag">
-            <span id="lang-text">EN</span>
-        </button>
+            <div class="header-controls">
+                <!-- BOTÃO DE IDIOMA (PT / EN) -->
+                <button id="lang-toggle" class="control-btn lang-btn" type="button" aria-label="Alternar idioma / Switch language" title="Mudar idioma / Switch language">
+                    <img id="flag-icon" src="https://flagcdn.com/w20/us.png" alt="Bandeira idioma">
+                    <span id="lang-text">EN</span>
+                </button>
+
+                <!-- BOTÃO DE TEMA (CLARO / ESCURO) -->
+                <button id="theme-toggle" class="control-btn theme-btn" type="button" aria-label="Alternar tema claro ou escuro" title="Alternar tema / Toggle theme">
+                    <!-- Ícone Sol (visível no modo escuro para mudar para claro) -->
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Ícone Lua (visível no modo claro para mudar para escuro) -->
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <span id="theme-text" class="theme-label" data-pt="Claro" data-en="Light">Claro</span>
+                </button>
+
+                <!-- BOTÃO MENU MOBILE -->
+                <button id="mobile-menu-btn" class="control-btn mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <section id="sobre">
-        <div class="sobre-container">
-            <div class="sobre-texto">
-                <h2 class="scroll-reveal" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</h2>
+    <main>
+        <!-- SEÇÃO HERO / SOBRE MIM -->
+        <section id="sobre" class="hero-section">
+            <div class="sobre-container">
+                <div class="sobre-texto scroll-reveal">
+                    <div class="cyber-badge">
+                        <span class="pulse-dot"></span>
+                        <span data-pt="SISTEMA ONLINE // DEV • REDES • CYBERSEC" data-en="SYSTEM ONLINE // DEV • NETWORKS • CYBERSEC">SISTEMA ONLINE // DEV • REDES • CYBERSEC</span>
+                    </div>
 
-                <p class="scroll-reveal"
-                   data-pt="Bem-vindo ao meu portfólio! Meu nome é Caio Porto e sou estudante de Ciência da Computação, atualmente cursando o 5º período da graduação. Estou em constante busca pelo desenvolvimento das minhas habilidades em desenvolvimento web e em outras áreas da computação. Atualmente, programo em C, Python e JavaScript, com ênfase em C. Tenho interesse em aprimorar meus conhecimentos em desenvolvimento web, Machine Learning e segurança da informação. Tenho 20 anos e estou animado para compartilhar meus projetos e experiências com vocês."
-                   data-en="Welcome to my portfolio! My name is Caio Porto and I am a Computer Science student currently in the 5th semester. I am constantly seeking to improve my skills in web development and other areas of computing. I currently program in C, Python, and JavaScript, with emphasis on C. I am interested in enhancing my knowledge in web development, Machine Learning, and information security. I am 20 years old and excited to share my projects and experiences with you.">
-                   Bem-vindo ao meu portfólio! Meu nome é Caio Porto...
+                    <h1 class="hero-title">
+                        <span data-pt="Olá, eu sou" data-en="Hi, I'm">Olá, eu sou</span>
+                        <span class="gradient-text">Caio Porto</span>
+                    </h1>
+
+                    <div class="typing-wrapper">
+                        <span class="typing-prefix">&gt;_ </span>
+                        <span id="typing-text" class="typing-text"></span>
+                        <span class="typing-cursor">|</span>
+                    </div>
+
+                    <p class="hero-description"
+                       data-pt="Estudante de Ciência da Computação (5º período) com atuação prática em Redes de Computadores, Infraestrutura e Cibersegurança, aliado ao desenvolvimento de software em Python, C, TypeScript/JavaScript e SQL. Experiência na proteção de ativos, análise e mitigação de vulnerabilidades (CVEs), administração de ambientes virtualizados e servidores Linux/Windows, além da construção de APIs seguras, aplicações desktop e mobile."
+                       data-en="Computer Science student (5th semester) with hands-on experience in Computer Networks, Infrastructure, and Cybersecurity, combined with software development in Python, C, TypeScript/JavaScript, and SQL. Experienced in asset protection, vulnerability analysis and mitigation (CVEs), virtualized environments and Linux/Windows server administration, as well as building secure APIs, desktop, and mobile applications.">
+                        Estudante de Ciência da Computação (5º período) com atuação prática em Redes de Computadores, Infraestrutura e Cibersegurança, aliado ao desenvolvimento de software em Python, C, TypeScript/JavaScript e SQL. Experiência na proteção de ativos, análise e mitigação de vulnerabilidades (CVEs), administração de ambientes virtualizados e servidores Linux/Windows, além da construção de APIs seguras, aplicações desktop e mobile.
+                    </p>
+
+                    <div class="hero-metrics">
+                        <div class="metric-card">
+                            <span class="metric-value">5º</span>
+                            <span class="metric-label" data-pt="Período C. Computação" data-en="Semester CS">Período C. Computação</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">8+</span>
+                            <span class="metric-label" data-pt="Projetos Desenvolvidos" data-en="Developed Projects">Projetos Desenvolvidos</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">SecOps</span>
+                            <span class="metric-label" data-pt="Redes & CyberSegurança" data-en="Networks & CyberSec">Redes & CyberSegurança</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn-primary" data-pt="Explorar Projetos" data-en="Explore Projects">Explorar Projetos</a>
+                        <a href="#cybersec" class="btn-secondary" data-pt="Experiência CyberSec" data-en="CyberSec Experience">Experiência CyberSec</a>
+                    </div>
+
+                    <div class="social-strip">
+                        <a href="https://github.com/PortoCya" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/caio-porto-06b84632a" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:caioportocontato@gmail.com" class="social-pill" aria-label="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>E-mail</span>
+                        </a>
+                        <a href="https://www.instagram.com/p0rtocaio" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sobre-imagem scroll-reveal">
+                    <div class="hud-frame pulse-glow">
+                        <div class="hud-corner hud-tl"></div>
+                        <div class="hud-corner hud-tr"></div>
+                        <div class="hud-corner hud-bl"></div>
+                        <div class="hud-corner hud-br"></div>
+                        <img src="assets/images/digital-illustration.png" alt="Ilustração digital futurista de desenvolvimento e tecnologia">
+                        <div class="hud-status-bar">
+                            <span class="hud-tag">SEC_LEVEL: HIGH</span>
+                            <span class="hud-tag">NET_STATUS: ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO EXPERIÊNCIA EM REDES & CIBERSEGURANÇA -->
+        <section id="cybersec" class="cyber-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-subtitle" data-pt="// INFRAESTRUTURA & DEFESA CIBERNÉTICA" data-en="// INFRASTRUCTURE & CYBER DEFENSE">// INFRAESTRUTURA & DEFESA CIBERNÉTICA</span>
+                <h2 data-pt="Experiência em Redes & Cibersegurança" data-en="Networks & Cybersecurity Experience">Experiência em Redes & Cibersegurança</h2>
+                <p data-pt="Atuação prática focada em resiliência operacional, proteção de endpoints, arquitetura de redes e mitigação proativa de riscos em ambientes corporativos."
+                   data-en="Hands-on work focused on operational resilience, endpoint protection, network architecture, and proactive risk mitigation in enterprise environments.">
+                    Atuação prática focada em resiliência operacional, proteção de endpoints, arquitetura de redes e mitigação proativa de riscos em ambientes corporativos.
                 </p>
             </div>
 
-            <div class="sobre-imagem">
-                <img src="assets/images/digital-illustration.png" alt="Ilustração digital">
+            <div class="cyber-grid">
+                <!-- Card 1: Gestão de Vulnerabilidades -->
+                <article class="cyber-card scroll-reveal">
+                    <div class="cyber-card-header">
+                        <div class="cyber-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        </div>
+                        <span class="cyber-code">SEC-01</span>
+                    </div>
+                    <h3 data-pt="Gestão de Vulnerabilidades & CVEs" data-en="Vulnerability & CVE Management">Gestão de Vulnerabilidades & CVEs</h3>
+                    <p data-pt="Identificação, análise de criticidade (CVSS) e fluxo estruturado de tratamento de vulnerabilidades (CVEs). Aplicação de correções, atualização de pacotes críticos e redução da superfície de exposição em sistemas operacionais e serviços."
+                       data-en="Identification, severity analysis (CVSS), and structured remediation workflows for vulnerabilities (CVEs). Patch management, critical package updates, and attack surface reduction across operating systems and services.">
+                        Identificação, análise de criticidade (CVSS) e fluxo estruturado de tratamento de vulnerabilidades (CVEs). Aplicação de correções, atualização de pacotes críticos e redução da superfície de exposição em sistemas operacionais e serviços.
+                    </p>
+                    <div class="cyber-tags">
+                        <span>CVE Analysis</span>
+                        <span>Patch Management</span>
+                        <span>Hardening</span>
+                        <span>Risk Mitigation</span>
+                    </div>
+                </article>
+
+                <!-- Card 2: Endpoint Security & EDR -->
+                <article class="cyber-card scroll-reveal">
+                    <div class="cyber-card-header">
+                        <div class="cyber-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <span class="cyber-code">SEC-02</span>
+                    </div>
+                    <h3 data-pt="Segurança de Endpoints & Monitoramento" data-en="Endpoint Security & Monitoring">Segurança de Endpoints & Monitoramento</h3>
+                    <p data-pt="Implantação, padronização e gerenciamento de soluções corporativas de proteção de endpoints (antivírus/EDR) em estações e ambientes Linux e Windows. Acompanhamento de alertas de segurança, relatórios de conformidade e resposta a incidentes."
+                       data-en="Deployment, standardization, and management of enterprise endpoint protection solutions (antivirus/EDR) across Linux and Windows environments. Security alert monitoring, compliance reporting, and incident response.">
+                        Implantação, padronização e gerenciamento de soluções corporativas de proteção de endpoints (antivírus/EDR) em estações e ambientes Linux e Windows. Acompanhamento de alertas de segurança, relatórios de conformidade e resposta a incidentes.
+                    </p>
+                    <div class="cyber-tags">
+                        <span>Endpoint Protection</span>
+                        <span>Linux & Windows Security</span>
+                        <span>Threat Detection</span>
+                        <span>Compliance</span>
+                    </div>
+                </article>
+
+                <!-- Card 3: Arquitetura de Redes & Conectividade -->
+                <article class="cyber-card scroll-reveal">
+                    <div class="cyber-card-header">
+                        <div class="cyber-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <span class="cyber-code">NET-03</span>
+                    </div>
+                    <h3 data-pt="Arquitetura de Redes, VPN & Cloud" data-en="Network Architecture, VPN & Cloud">Arquitetura de Redes, VPN & Cloud</h3>
+                    <p data-pt="Fundamentos sólidos e prática em arquitetura de redes TCP/IP, endereçamento, roteamento, túneis VPN seguros e computação em nuvem. Monitoramento contínuo de conectividade, disponibilidade de hosts e diagnóstico de tráfego."
+                       data-en="Strong foundation and practice in TCP/IP network architecture, addressing, routing, secure VPN tunnels, and cloud computing. Continuous monitoring of connectivity, host availability, and traffic diagnostics.">
+                        Fundamentos sólidos e prática em arquitetura de redes TCP/IP, endereçamento, roteamento, túneis VPN seguros e computação em nuvem. Monitoramento contínuo de conectividade, disponibilidade de hosts e diagnóstico de tráfego.
+                    </p>
+                    <div class="cyber-tags">
+                        <span>TCP/IP & DNS</span>
+                        <span>VPN & Firewall</span>
+                        <span>Network Monitoring</span>
+                        <span>Cloud Architecture</span>
+                    </div>
+                </article>
+
+                <!-- Card 4: Virtualização, Linux & Auditoria -->
+                <article class="cyber-card scroll-reveal">
+                    <div class="cyber-card-header">
+                        <div class="cyber-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        </div>
+                        <span class="cyber-code">INFRA-04</span>
+                    </div>
+                    <h3 data-pt="Virtualização, Sistemas & Auditoria de Acessos" data-en="Virtualization, Systems & Access Auditing">Virtualização, Sistemas & Auditoria de Acessos</h3>
+                    <p data-pt="Provisionamento e administração de máquinas virtuais (Hypervisors corporativos), gerenciamento de serviços em Linux (systemd/CLI), padronização de procedimentos operacionais (POP) e auditoria de contas, privilégios e controles de acesso."
+                       data-en="Provisioning and administration of virtual machines (Enterprise Hypervisors), Linux service management (systemd/CLI), standardization of operating procedures (SOPs), and auditing of accounts, privileges, and access controls.">
+                        Provisionamento e administração de máquinas virtuais (Hypervisors corporativos), gerenciamento de serviços em Linux (systemd/CLI), padronização de procedimentos operacionais (POP) e auditoria de contas, privilégios e controles de acesso.
+                    </p>
+                    <div class="cyber-tags">
+                        <span>Virtualization / VMs</span>
+                        <span>Linux SysAdmin</span>
+                        <span>Access Auditing (IAM)</span>
+                        <span>Documentação Técnica</span>
+                    </div>
+                </article>
             </div>
-        </div>
-    </section>
 
-    <section id="projetos">
-        <h2 class="scroll-reveal" data-pt="Projetos" data-en="Projects">Projetos</h2>
+            <!-- Terminal interativo de resumo operacional -->
+            <div class="cyber-terminal scroll-reveal">
+                <div class="terminal-bar">
+                    <div class="terminal-dots">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+                    <span class="terminal-title">caio@secops-node:~ /status_overview.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="t-prompt">$</span> <span class="t-cmd">whoami --profile</span></p>
+                    <p class="t-output" data-pt="> Caio Porto | Ciência da Computação (5º Período) | Infraestrutura, Redes & Cibersegurança + Dev"
+                       data-en="> Caio Porto | Computer Science (5th Semester) | Infrastructure, Networks & Cybersecurity + Dev">
+                        &gt; Caio Porto | Ciência da Computação (5º Período) | Infraestrutura, Redes &amp; Cibersegurança + Dev
+                    </p>
+                    <p><span class="t-prompt">$</span> <span class="t-cmd">cat core_competencies.log</span></p>
+                    <p class="t-output" data-pt="[OK] Análise e Tratamento de CVEs  |  [OK] Segurança de Endpoints Linux/Windows  |  [OK] Redes TCP/IP & VPN"
+                       data-en="[OK] CVE Analysis & Remediation  |  [OK] Linux/Windows Endpoint Security  |  [OK] TCP/IP Networks & VPN">
+                        [OK] Análise e Tratamento de CVEs  |  [OK] Segurança de Endpoints Linux/Windows  |  [OK] Redes TCP/IP &amp; VPN
+                    </p>
+                    <p class="t-output" data-pt="[OK] Virtualização & SysAdmin      |  [OK] Auditoria de Acessos & LGPD       |  [OK] Desenvolvimento Seguro (JWT/HMAC)"
+                       data-en="[OK] Virtualization & SysAdmin   |  [OK] Access Auditing & Privacy         |  [OK] Secure Development (JWT/HMAC)">
+                        [OK] Virtualização &amp; SysAdmin      |  [OK] Auditoria de Acessos &amp; LGPD       |  [OK] Desenvolvimento Seguro (JWT/HMAC)
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <div class="projeto scroll-reveal">
-            <h3 class="scroll-reveal"
-                data-pt="Crud em loja de vinil em C com interface gráfica."
-                data-en="Vinyl store CRUD in C with graphical interface.">
-                Crud em loja de vinil em C com interface gráfica.
-            </h3>
+        <!-- SEÇÃO DE HABILIDADES & TECNOLOGIAS -->
+        <section id="skills" class="skills-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-subtitle" data-pt="// ARSENAL TÉCNICO" data-en="// TECHNICAL ARSENAL">// ARSENAL TÉCNICO</span>
+                <h2 data-pt="Habilidades & Tecnologias" data-en="Skills & Technologies">Habilidades & Tecnologias</h2>
+                <p data-pt="Combinação de linguagens de programação, frameworks modernos e ferramentas de infraestrutura e segurança."
+                   data-en="A combination of programming languages, modern frameworks, and infrastructure and security tools.">
+                    Combinação de linguagens de programação, frameworks modernos e ferramentas de infraestrutura e segurança.
+                </p>
+            </div>
 
-            <p class="scroll-reveal"
-               data-pt="Desenvolvido como parte da disciplina de Programação Estruturada, ministrada pelo professor Guibson Santana, o objetivo era construir um CRUD completo em linguagem C, simulando o funcionamento de um sistema básico de cadastro."
-               data-en="Developed as part of the Structured Programming course taught by Professor Guibson Santana, the goal was to build a complete CRUD in C language, simulating the operation of a basic registration system.">
-               Desenvolvido como parte da disciplina...
-            </p>
+            <div class="skills-categories">
+                <div class="skill-group scroll-reveal">
+                    <h3 data-pt="Linguagens & Backend" data-en="Languages & Backend">Linguagens & Backend</h3>
+                    <div class="skill-badges">
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                            <span>C / C++</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                            <span>Python & FastAPI</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                            <span>Java / C# / PHP</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                            <span>SQL (MySQL / SQLite / Postgres)</span>
+                        </div>
+                    </div>
+                </div>
 
-            <a href="https://github.com/PortoCya/CRUD-LOJA-DE-VINIL" target="_blank" class="github-link">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-            </a>
-        </div>
+                <div class="skill-group scroll-reveal">
+                    <h3 data-pt="Frontend, Mobile & IA" data-en="Frontend, Mobile & AI">Frontend, Mobile & IA</h3>
+                    <div class="skill-badges">
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native">
+                            <span>React Native & Expo</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                            <span>HTML5 Semântico</span>
+                        </div>
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                            <span>CSS3 Moderno & UI/UX</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot"></span>
+                            <span>Google Gemini API / IA</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot"></span>
+                            <span>SQLAlchemy 2.0 & Pydantic</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot"></span>
+                            <span>Tkinter Desktop GUI</span>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="projeto scroll-reveal">
-            <h3 class="scroll-reveal" data-pt="DB project" data-en="DB project">DB project</h3>
+                <div class="skill-group scroll-reveal">
+                    <h3 data-pt="Redes, Infra & Cibersegurança" data-en="Networks, Infra & Cybersecurity">Redes, Infra & Cibersegurança</h3>
+                    <div class="skill-badges">
+                        <div class="skill-pill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                            <span>Administração Linux & CLI</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot cyber"></span>
+                            <span data-pt="Gestão de Vulnerabilidades (CVEs)" data-en="Vulnerability Management (CVEs)">Gestão de Vulnerabilidades (CVEs)</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot cyber"></span>
+                            <span data-pt="Proteção de Endpoints (EDR/AV)" data-en="Endpoint Security (EDR/AV)">Proteção de Endpoints (EDR/AV)</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot cyber"></span>
+                            <span data-pt="Virtualização & Hypervisors" data-en="Virtualization & Hypervisors">Virtualização & Hypervisors</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot cyber"></span>
+                            <span data-pt="Arquitetura TCP/IP & VPN" data-en="TCP/IP Architecture & VPN">Arquitetura TCP/IP & VPN</span>
+                        </div>
+                        <div class="skill-pill">
+                            <span class="pill-dot cyber"></span>
+                            <span data-pt="Auditoria de Acessos & JWT/HMAC" data-en="Access Auditing & JWT/HMAC">Auditoria de Acessos & JWT/HMAC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <p class="scroll-reveal"
-               data-pt="Este projeto tem como objetivo modelar um banco de dados para gerenciar informações relacionadas a linhas ferroviárias, estações, trens, maquinistas, viagens, e seus respectivos relacionamentos. A estrutura do banco de dados busca atender às necessidades de controle e operação de uma rede ferroviária, garantindo uma organização eficiente das informações."
-               data-en="This project aims to model a database to manage information related to railway lines, stations, trains, engineers, trips, and their respective relationships. The database structure seeks to meet the control and operation needs of a railway network, ensuring efficient organization of information.">
-               Este projeto tem como objetivo modelar...
-            </p>
+        <!-- SEÇÃO DE PROJETOS -->
+        <section id="projetos" class="projects-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-subtitle" data-pt="// REPOSITÓRIO DE SOLUÇÕES" data-en="// SOLUTIONS REPOSITORY">// REPOSITÓRIO DE SOLUÇÕES</span>
+                <h2 data-pt="Meus Projetos" data-en="My Projects">Meus Projetos</h2>
+                <p data-pt="Projetos acadêmicos, pessoais e arquiteturas completas desenvolvidas em Python, C, TypeScript, React Native e Bancos de Dados."
+                   data-en="Academic and personal projects and full architectures built with Python, C, TypeScript, React Native, and Databases.">
+                    Projetos acadêmicos, pessoais e arquiteturas completas desenvolvidas em Python, C, TypeScript, React Native e Bancos de Dados.
+                </p>
+            </div>
 
-            <a href="https://github.com/JoaoPRamos10/DBproject" target="_blank" class="github-link">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-            </a>
-        </div>
-    </section>
+            <!-- FILTROS DE PROJETOS -->
+            <div class="project-filters scroll-reveal" role="tablist" aria-label="Filtrar projetos por categoria">
+                <button class="filter-btn active" data-filter="all" data-pt="Todos" data-en="All">Todos</button>
+                <button class="filter-btn" data-filter="web" data-pt="Web & Dashboards" data-en="Web & Dashboards">Web & Dashboards</button>
+                <button class="filter-btn" data-filter="backend" data-pt="Backend, IA & Segurança" data-en="Backend, AI & Security">Backend, IA & Segurança</button>
+                <button class="filter-btn" data-filter="mobile" data-pt="Mobile (React Native)" data-en="Mobile (React Native)">Mobile (React Native)</button>
+                <button class="filter-btn" data-filter="desktop" data-pt="Desktop & Sistemas (C / Python)" data-en="Desktop & Systems (C / Python)">Desktop & Sistemas (C / Python)</button>
+                <button class="filter-btn" data-filter="database" data-pt="Banco de Dados" data-en="Databases">Banco de Dados</button>
+            </div>
 
-    <section id="contato">
-        <h2 class="scroll-reveal" data-pt="Contato" data-en="Contact">Contato</h2>
+            <!-- GRID DE PROJETOS -->
+            <div class="projetos-grid">
+                <!-- Projeto 1: NPS KeyCore v1.0 (Banco_PORTO_2026) -->
+                <article class="projeto scroll-reveal" data-category="backend database web">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="API • IA • Segurança" data-en="API • AI • Security">API • IA • Segurança</span>
+                        <span class="projeto-lang">Python • FastAPI</span>
+                    </div>
+                    <h3 data-pt="NPS KeyCore v1.0 — Backend API, DB & IA Qualitativa"
+                        data-en="NPS KeyCore v1.0 — Backend API, DB & Qualitative AI">
+                        NPS KeyCore v1.0 — Backend API, DB &amp; IA Qualitativa
+                    </h3>
+                    <p data-pt="Plataforma corporativa completa para gestão de pesquisas NPS desenvolvida com FastAPI, SQLAlchemy 2.0 e Pydantic v2. Conta com modelagem relacional de 16 tabelas, análise qualitativa de sentimento com IA (Google Gemini), autenticação segura JWT, hash criptográfico HMAC para conformidade com a LGPD, dashboard analítico e suíte de testes automatizados."
+                       data-en="Complete enterprise platform for NPS survey management built with FastAPI, SQLAlchemy 2.0, and Pydantic v2. Features a 16-table relational database model, qualitative sentiment AI analysis (Google Gemini), secure JWT authentication, HMAC cryptographic hashing for privacy compliance, analytical dashboard, and automated security tests.">
+                        Plataforma corporativa completa para gestão de pesquisas NPS desenvolvida com FastAPI, SQLAlchemy 2.0 e Pydantic v2. Conta com modelagem relacional de 16 tabelas, análise qualitativa de sentimento com IA (Google Gemini), autenticação segura JWT, hash criptográfico HMAC para conformidade com a LGPD, dashboard analítico e suíte de testes automatizados.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>FastAPI</span>
+                        <span>SQLAlchemy 2.0</span>
+                        <span>Google Gemini AI</span>
+                        <span>JWT &amp; LGPD</span>
+                        <span>Pytest</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/Banco_PORTO_2026" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
 
-        <form class="scroll-reveal" action="https://formsubmit.co/caioportocontato@gmail.com" method="POST">
-            <label for="nome" data-pt="Nome:" data-en="Name:">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+                <!-- Projeto 2: Transparência PE (pe-transparencia-visao) -->
+                <article class="projeto scroll-reveal" data-category="web">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="Dashboard & Dados" data-en="Dashboard & Data">Dashboard &amp; Dados</span>
+                        <span class="projeto-lang">React • TypeScript</span>
+                    </div>
+                    <h3 data-pt="Transparência PE — Dashboard de Gestão e Dados Públicos"
+                        data-en="Transparência PE — Public Data & Management Dashboard">
+                        Transparência PE — Dashboard de Gestão e Dados Públicos
+                    </h3>
+                    <p data-pt="Dashboard analítico interativo para visualização de indicadores fiscais, receitas arrecadadas, despesas e transparência pública dos municípios de Pernambuco. Desenvolvido com React, TypeScript e Vite, com filtros temporais dinâmicos e visualização macro de métricas."
+                       data-en="Interactive analytical dashboard for visualizing fiscal indicators, collected revenues, expenses, and public transparency across municipalities in Pernambuco. Built with React, TypeScript, and Vite, featuring dynamic year filters and macro metric views.">
+                        Dashboard analítico interativo para visualização de indicadores fiscais, receitas arrecadadas, despesas e transparência pública dos municípios de Pernambuco. Desenvolvido com React, TypeScript e Vite, com filtros temporais dinâmicos e visualização macro de métricas.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>React</span>
+                        <span>TypeScript</span>
+                        <span>Vite</span>
+                        <span>Data Visualization</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/pe-transparencia-visao" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Repositório GitHub" data-en="GitHub Repository">Repositório GitHub</span>
+                        </a>
+                    </div>
+                </article>
 
-            <label for="email" data-pt="Email:" data-en="Email:">Email:</label>
-            <input type="email" id="email" name="email" required>
+                <!-- Projeto 3: Points Proto 0.1 EXPO -->
+                <article class="projeto scroll-reveal" data-category="mobile">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="App Mobile" data-en="Mobile App">App Mobile</span>
+                        <span class="projeto-lang">TypeScript • React Native</span>
+                    </div>
+                    <h3 data-pt="Points Proto — App de Eventos, Mapa & Carteira Digital"
+                        data-en="Points Proto — Events, Map & Digital Wallet App">
+                        Points Proto — App de Eventos, Mapa &amp; Carteira Digital
+                    </h3>
+                    <p data-pt="Aplicativo mobile multiplataforma desenvolvido com React Native, TypeScript e Expo Router. Inclui fluxos de criação e descoberta de eventos geolocalizados com mapas interativos (react-native-maps), carteira digital integrada (wallet), autenticação biométrica local (expo-local-authentication) e uso de câmera."
+                       data-en="Cross-platform mobile application built with React Native, TypeScript, and Expo Router. Includes geolocated event creation and discovery flows with interactive maps (react-native-maps), integrated digital wallet, local biometric authentication (expo-local-authentication), and camera integration.">
+                        Aplicativo mobile multiplataforma desenvolvido com React Native, TypeScript e Expo Router. Inclui fluxos de criação e descoberta de eventos geolocalizados com mapas interativos (react-native-maps), carteira digital integrada (wallet), autenticação biométrica local (expo-local-authentication) e uso de câmera.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>React Native</span>
+                        <span>TypeScript</span>
+                        <span>Expo Router</span>
+                        <span>Maps &amp; Biometrics</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/Points-Proto-0.1EXPO" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
 
-            <label for="mensagem" data-pt="Mensagem:" data-en="Message:">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
+                <!-- Projeto 4: Bravo EPIs Demo -->
+                <article class="projeto scroll-reveal" data-category="web backend">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="Web App • Cloud & IA" data-en="Web App • Cloud & AI">Web App • Cloud &amp; IA</span>
+                        <span class="projeto-lang">TypeScript • Firebase</span>
+                    </div>
+                    <h3 data-pt="Bravo EPIs — Plataforma Web com Firebase & IA"
+                        data-en="Bravo EPIs — Web Platform with Firebase & AI">
+                        Bravo EPIs — Plataforma Web com Firebase &amp; IA
+                    </h3>
+                    <p data-pt="Aplicação web moderna construída com TypeScript, Vite e Firebase (Firestore com regras de segurança customizadas), contando com recursos inteligentes integrados via Google Gemini API para gestão e catálogo de Equipamentos de Proteção Individual (EPIs)."
+                       data-en="Modern web application built with TypeScript, Vite, and Firebase (Firestore with custom security rules), featuring intelligent capabilities powered by the Google Gemini API for Personal Protective Equipment (PPE) management and catalog.">
+                        Aplicação web moderna construída com TypeScript, Vite e Firebase (Firestore com regras de segurança customizadas), contando com recursos inteligentes integrados via Google Gemini API para gestão e catálogo de Equipamentos de Proteção Individual (EPIs).
+                    </p>
+                    <div class="projeto-techs">
+                        <span>TypeScript</span>
+                        <span>Firebase / Firestore</span>
+                        <span>Security Rules</span>
+                        <span>Gemini API</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/Bravo-EPIS-Demo" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Repositório GitHub" data-en="GitHub Repository">Repositório GitHub</span>
+                        </a>
+                    </div>
+                </article>
 
-            <button type="submit" data-pt="Enviar" data-en="Send">Enviar</button>
-        </form>
-    </section>
+                <!-- Projeto 3: Sistema de Vendas GUI + Banco de Dados -->
+                <article class="projeto scroll-reveal" data-category="desktop database">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="Desktop & SQL" data-en="Desktop & SQL">Desktop &amp; SQL</span>
+                        <span class="projeto-lang">Python • MySQL</span>
+                    </div>
+                    <h3 data-pt="Sistema de Vendas — Interface Gráfica & Banco de Dados"
+                        data-en="Sales System — Graphical Interface & Database">
+                        Sistema de Vendas — Interface Gráfica &amp; Banco de Dados
+                    </h3>
+                    <p data-pt="Aplicação desktop modular em Python integrada a banco de dados relacional MySQL/MariaDB. Possui módulos dedicados com interface gráfica para gerenciamento de clientes, controle de estoque de produtos e emissão de pedidos com chaves estrangeiras e cálculo automático de valores."
+                       data-en="Modular Python desktop application integrated with a MySQL/MariaDB relational database. Features dedicated GUI modules for customer management, product inventory control, and order processing with foreign keys and automatic total calculation.">
+                        Aplicação desktop modular em Python integrada a banco de dados relacional MySQL/MariaDB. Possui módulos dedicados com interface gráfica para gerenciamento de clientes, controle de estoque de produtos e emissão de pedidos com chaves estrangeiras e cálculo automático de valores.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>Python</span>
+                        <span>Tkinter GUI</span>
+                        <span>MySQL / MariaDB</span>
+                        <span>CRUD Modular</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/Desafio-de-Integra-o-com-Interface-Gr-fica-e-Banco-de-Dados" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Projeto 4: CRUD Loja de Vinil em C -->
+                <article class="projeto scroll-reveal" data-category="desktop">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="Sistemas & Estruturas" data-en="Systems & Structures">Sistemas &amp; Estruturas</span>
+                        <span class="projeto-lang">Linguagem C</span>
+                    </div>
+                    <h3 data-pt="CRUD Loja de Vinil em C com Interface Gráfica"
+                        data-en="Vinyl Store CRUD in C with Graphical Interface">
+                        CRUD Loja de Vinil em C com Interface Gráfica
+                    </h3>
+                    <p data-pt="Desenvolvido na disciplina de Programação Estruturada, este sistema implementa um CRUD completo em linguagem C simulando a gestão de uma loja de discos de vinil. Utiliza manipulação avançada de structs, ponteiros, alocação dinâmica de memória e modularização."
+                       data-en="Developed for the Structured Programming course, this system implements a full CRUD in C simulating a vinyl record store management system. Uses advanced struct manipulation, pointers, dynamic memory allocation, and modular design.">
+                        Desenvolvido na disciplina de Programação Estruturada, este sistema implementa um CRUD completo em linguagem C simulando a gestão de uma loja de discos de vinil. Utiliza manipulação avançada de structs, ponteiros, alocação dinâmica de memória e modularização.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>Linguagem C</span>
+                        <span>Ponteiros &amp; Structs</span>
+                        <span>Alocação Dinâmica</span>
+                        <span>Interface Gráfica</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/CRUD-LOJA-DE-VINIL" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Projeto 5: Agenda de Contatos React Native -->
+                <article class="projeto scroll-reveal" data-category="mobile">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="App Mobile" data-en="Mobile App">App Mobile</span>
+                        <span class="projeto-lang">React Native • Expo</span>
+                    </div>
+                    <h3 data-pt="Agenda de Contatos Mobile com Persistência Local"
+                        data-en="Mobile Contacts Book with Local Persistence">
+                        Agenda de Contatos Mobile com Persistência Local
+                    </h3>
+                    <p data-pt="Aplicativo móvel desenvolvido com React Native e TypeScript para gerenciamento rápido de contatos e telefones. Conta com armazenamento persistente no dispositivo via AsyncStorage, validação de formulários e interface adaptada para teclados numéricos."
+                       data-en="Mobile app built with React Native and TypeScript for fast contact and phone number management. Features persistent on-device storage via AsyncStorage, form validation, and an intuitive numeric keypad UI.">
+                        Aplicativo móvel desenvolvido com React Native e TypeScript para gerenciamento rápido de contatos e telefones. Conta com armazenamento persistente no dispositivo via AsyncStorage, validação de formulários e interface adaptada para teclados numéricos.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>React Native</span>
+                        <span>TypeScript</span>
+                        <span>AsyncStorage</span>
+                        <span>Expo</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/PortoCya/listarNomes-com-numero" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Projeto 6: DB Project Ferroviário -->
+                <article class="projeto scroll-reveal" data-category="database">
+                    <div class="projeto-top">
+                        <span class="projeto-badge" data-pt="Arquitetura de Dados" data-en="Data Architecture">Arquitetura de Dados</span>
+                        <span class="projeto-lang">SQL • Modelagem ER</span>
+                    </div>
+                    <h3 data-pt="DB Project — Modelagem de Rede Ferroviária"
+                        data-en="DB Project — Railway Network Database Modeling">
+                        DB Project — Modelagem de Rede Ferroviária
+                    </h3>
+                    <p data-pt="Modelagem conceitual, lógica e física de um banco de dados relacional para gerenciar linhas ferroviárias, estações, trens, maquinistas, viagens e seus relacionamentos, garantindo integridade referencial e eficiência operacional."
+                       data-en="Conceptual, logical, and physical modeling of a relational database to manage railway lines, stations, trains, engineers, trips, and their relationships, ensuring referential integrity and operational efficiency.">
+                        Modelagem conceitual, lógica e física de um banco de dados relacional para gerenciar linhas ferroviárias, estações, trens, maquinistas, viagens e seus relacionamentos, garantindo integridade referencial e eficiência operacional.
+                    </p>
+                    <div class="projeto-techs">
+                        <span>SQL</span>
+                        <span>Modelagem Relacional</span>
+                        <span>DER / MER</span>
+                        <span>Integridade de Dados</span>
+                    </div>
+                    <div class="projeto-footer">
+                        <a href="https://github.com/JoaoPRamos10/DBproject" target="_blank" rel="noopener noreferrer" class="github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span data-pt="Ver no GitHub" data-en="View on GitHub">Ver no GitHub</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE CONTATO -->
+        <section id="contato" class="contact-section">
+            <div class="section-header scroll-reveal">
+                <span class="section-subtitle" data-pt="// CANAL DE COMUNICAÇÃO" data-en="// COMMUNICATION CHANNEL">// CANAL DE COMUNICAÇÃO</span>
+                <h2 data-pt="Entre em Contato" data-en="Get in Touch">Entre em Contato</h2>
+                <p data-pt="Tem uma oportunidade, projeto ou quer trocar uma ideia sobre Desenvolvimento, Redes ou Cibersegurança? Envie uma mensagem!"
+                   data-en="Have an opportunity, a project, or want to chat about Development, Networks, or Cybersecurity? Send a message!">
+                    Tem uma oportunidade, projeto ou quer trocar uma ideia sobre Desenvolvimento, Redes ou Cibersegurança? Envie uma mensagem!
+                </p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info scroll-reveal">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4>E-mail</h4>
+                            <a href="mailto:caioportocontato@gmail.com">caioportocontato@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/caio-porto-06b84632a" target="_blank" rel="noopener noreferrer">linkedin.com/in/caio-porto</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/PortoCya" target="_blank" rel="noopener noreferrer">github.com/PortoCya</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form scroll-reveal" action="https://formsubmit.co/caioportocontato@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="nome" data-pt="Nome:" data-en="Name:">Nome:</label>
+                        <input type="text" id="nome" name="nome" required
+                               placeholder="Seu nome completo"
+                               data-placeholder-pt="Seu nome completo"
+                               data-placeholder-en="Your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" data-pt="Email:" data-en="Email:">Email:</label>
+                        <input type="email" id="email" name="email" required
+                               placeholder="seuemail@exemplo.com"
+                               data-placeholder-pt="seuemail@exemplo.com"
+                               data-placeholder-en="youremail@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem" data-pt="Mensagem:" data-en="Message:">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required
+                                  placeholder="Escreva sua mensagem..."
+                                  data-placeholder-pt="Escreva sua mensagem..."
+                                  data-placeholder-en="Write your message..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-pt="Enviar Mensagem" data-en="Send Message">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p data-pt="© 2024 portfólio Caio Porto. Todos os direitos reservados."
-           data-en="© 2024 Caio Porto portfolio. All rights reserved.">
-           © 2024 portfólio Caio Porto. Todos os direitos reservados.
-        </p>
+        <div class="footer-content">
+            <p data-pt="© 2026 Portfólio Caio Porto. Todos os direitos reservados."
+               data-en="© 2026 Caio Porto Portfolio. All rights reserved.">
+                © 2026 Portfólio Caio Porto. Todos os direitos reservados.
+            </p>
+            <a href="#sobre" class="back-to-top" data-pt="Voltar ao topo ↑" data-en="Back to top ↑">Voltar ao topo ↑</a>
+        </div>
     </footer>
-
 </body>
-
 </html>
